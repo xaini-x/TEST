@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract MyToken is ERC20 {
     constructor() ERC20("test", "tt") {
-        _mint(msg.sender , 1000 **18);
+        _mint(msg.sender , 1000000000* 10 **18);
     }
 
     function transfer(address to , address from ,uint amount)external returns(bool ){

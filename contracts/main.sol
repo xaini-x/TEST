@@ -4,7 +4,7 @@ pragma solidity 0.8.4;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 contract TEST  is Ownable{
-    
+    uint price=100;
 ERC20 private Token; 
 // bool vote;
 struct proposalDetail{
@@ -22,6 +22,9 @@ string[] proposalList;
 
 // mapping(string => bool) private voting;
 address[] private addr;
+
+//token will be list by anyone who has balance
+//it will charge some token 
 	function listToken(address token) external{
 		uint charge = 100000000;
 		uint Admin = charge/ 2;
@@ -47,7 +50,7 @@ address[] private addr;
 		proposalList.push(_proposal);
 	}}
 
-   function setText (uint index) public view returns (string memory) {
+   function proposalOnIndex (uint index) public view returns (string memory) {
 	
 		return proposalList[index];
 	}
@@ -67,4 +70,14 @@ function _vote (uint index , bool vote_) external {
 	function totalvote(string memory proposal ) external view returns(proposalDetail memory) {
 		return Proposal[proposal];
 	}
+
+
+function swap(address _token ) public payable {
+uint token =	1000;
+uint pay = msg.value * token;
+	payable(owner()).transfer(msg.value);
+	IERC20(_token).transferFrom(owner(), msg.sender , pay );
+	
 }
+}
+           
